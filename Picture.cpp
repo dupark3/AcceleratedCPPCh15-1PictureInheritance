@@ -1,4 +1,4 @@
-#include <algorithm> // max in width()
+#include <algorithm> 
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,14 +20,10 @@ Picture vcat(const Picture& pictureTop, const Picture& pictureBottom){
 }
 
 std::ostream& operator<<(std::ostream& os, const Picture& picture){
-    
-    return os;
-}
-
-size_t width(const Picture& picture){
-    size_t maxLen = 0;
-    for (size_t i = 0; i != vec.size(); ++i){
-        maxLen = std::max(maxLen, vec[i].size());    
+    const Pic_base::height_size height = picture.p->height();
+    for (Pic.base::height_size i = 0; i != height; ++i){
+        picture.p->display(os, i, false);
+        os << std::endl;
     }
-    return widthSize;
+    return os;
 }

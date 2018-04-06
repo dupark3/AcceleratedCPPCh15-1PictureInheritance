@@ -7,6 +7,7 @@
 
 // Private Implementation abstract base class and concrete derived classes
 class Pic_base{
+    friend std::ostream& operator<<(std::ostream&, const Picture&);
     typedef std::vector<std::string>::size_type height_size;
     typedef std::string::size_type width_size;
 
@@ -62,6 +63,7 @@ class VCat_Pic: public Pic_base{
 
 // Public interface Picture class
 class Picture{
+friend std::ostream& operator<<(std::ostream&, const Picture&);
 public:
     // implicit conversion of vec to Picture allowed by this constructor
     Picture(const std::vector<std::string>& = std::vector<std::string>()); 
@@ -78,4 +80,3 @@ private:
 Picture hcat(const Picture&, const Picture&);
 Picture vcat(const Picture&, const Picture&);
 std::ostream& operator<<(std::ostream&, const Picture&);
-size_t width(const Picture&);
