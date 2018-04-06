@@ -1,3 +1,7 @@
+#include <string>
+#include <vector>
+
+#include "Ptr.h"
 
 class Pic_base{
 
