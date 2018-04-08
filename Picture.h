@@ -16,7 +16,13 @@ class Pic_base{
     virtual width_size width() const = 0;
     virtual height_size height() const = 0;
     virtual void display(std::ostream&, height_size, bool) const = 0;
-
+protected:
+    static void pad(std::ostream& os, width_size beg, width_size end){
+        while (beg != end){
+            os << " ";
+            ++beg;
+        }
+    }
 public:
     virtual ~Pic_base() { }
 };
@@ -26,7 +32,7 @@ class String_Pic : public Pic_base {
     std::vector<std::string> data;
     String_Pic(std::vector<std::string> v) : data(v) { }
     width_size width() const;
-    height_size height() const;
+    height_size height() const { return data.size(); }
     void display(std::ostream&, height_size, bool) const;
 };
 
