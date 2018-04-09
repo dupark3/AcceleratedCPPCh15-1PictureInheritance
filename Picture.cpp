@@ -1,11 +1,11 @@
-#include <algorithm> 
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
 
 #include "Picture.h"
 
-Picture::Picture(const std::vector<std::string>& v) : p(new String_pic(v)) { }
+Picture::Picture(const std::vector<std::string>& v) : p(new String_Pic(v)) { }
 
 
 
@@ -30,14 +30,14 @@ void String_Pic::display(std::ostream& os, height_size row, bool do_pad) const{
 }
 
 void Frame_Pic::display(std::ostream& os, height_size row, bool do_pad) const{
-    if (row >= height){
+    if (row >= height()){
         // out of range
         if (do_pad)
             pad(os, 0, width());
     } else {
         if (row == 0 || row == height() - 1) {
             // top or bottom row
-            os << string(width(), '*');
+            os << std::string(width(), '*');
         } else if (row == 1 || row == height() - 2){
             // second from top or bottom row
             os << "*";
@@ -82,13 +82,13 @@ Picture hcat(const Picture& pictureLeft, const Picture& pictureRight){
     return new HCat_Pic(pictureRight.p, pictureLeft.p);
 }
 
-Picture vcat(const Picture& pictureTop, const Picture& pictureBottom){
+Picture vcat(const Picture& pictureTop, const Picture& pictureBottom){
     return new VCat_Pic(pictureTop.p, pictureBottom.p);
 }
 
 std::ostream& operator<<(std::ostream& os, const Picture& picture){
     const Pic_base::height_size height = picture.p->height();
-    for (Pic.base::height_size i = 0; i != height; ++i){
+    for (Pic_base::height_size i = 0; i != height; ++i){
         picture.p->display(os, i, false);
         os << std::endl;
     }

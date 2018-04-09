@@ -1,4 +1,4 @@
-#include <iostream> 
+#include <iostream>
 #include <memory> // shared_ptr
 #include <string>
 #include <vector>
@@ -44,7 +44,7 @@ class String_Pic : public Pic_base {
 };
 
 class Frame_Pic: public Pic_base{
-    friend Picture frame(const Picture&);
+    friend Picture frame(const Picture&);
     Ptr<Pic_base> p;
     Frame_Pic(const Ptr<Pic_base>& pic) : p(pic) { }
     width_size width() const { return p->width() + 4; }
@@ -55,8 +55,8 @@ class Frame_Pic: public Pic_base{
 class HCat_Pic: public Pic_base{
     friend Picture hcat(const Picture&, const Picture&);
     Ptr<Pic_base> left, right;
-    HCat_Pic(const Ptr<Pic_base>& leftPic, const Ptr<Pic_base>& rightPic) : 
-        top(leftPic), bottom(rightPic) { }
+    HCat_Pic(const Ptr<Pic_base>& leftPic, const Ptr<Pic_base>& rightPic) :
+        left(leftPic), right(rightPic) { }
     width_size width() const
         { return left->width() + right->width(); }
     height_size height() const
@@ -67,11 +67,11 @@ class HCat_Pic: public Pic_base{
 class VCat_Pic: public Pic_base{
     friend Picture vcat(const Picture&, const Picture&);
     Ptr<Pic_base> top, bottom;
-    VCat_Pic(const Ptr<Pic_base>& topPic, const Ptr<Pic_base>& bottomPic) : 
+    VCat_Pic(const Ptr<Pic_base>& topPic, const Ptr<Pic_base>& bottomPic) :
         top(topPic), bottom(bottomPic) { }
     width_size width() const
         { return std::max(top->width(), bottom->width()); }
-    height_size height() const;
+    height_size height() const
         { return top->height() + bottom->height(); }
     void display(std::ostream&, height_size, bool) const;
 };
@@ -81,13 +81,13 @@ class VCat_Pic: public Pic_base{
 // Public interface Picture class
 class Picture{
 friend std::ostream& operator<<(std::ostream&, const Picture&);
-friend Picture frame(const Picture&);
+friend Picture frame(const Picture&);
 friend Picture hcat(const Picture&, const Picture&);
 friend Picture vcat(const Picture&, const Picture&);
 
 public:
     // implicit conversion of vec to Picture allowed by this constructor
-    Picture(const std::vector<std::string>& = std::vector<std::string>()); 
+    Picture(const std::vector<std::string>& = std::vector<std::string>());
 
 private:
     Picture(Pic_base* ptr) : p(ptr) { }
@@ -97,7 +97,7 @@ private:
 
 
 // Nonmember functions
-Picture frame(const Picture&);
+Picture frame(const Picture&);
 Picture hcat(const Picture&, const Picture&);
 Picture vcat(const Picture&, const Picture&);
 std::ostream& operator<<(std::ostream&, const Picture&);
